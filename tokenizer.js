@@ -20,9 +20,14 @@ exports.rule = function (tokenType, re) {
     var ret = false;
     var result = re.exec(source);
     if (result) {
-      if (debugFlag) console.log(tokenType + ' token: ' + result[0]);
-      tokens.push(result[0]);
-      source = source.substring(result[0].length);
+      var value = result[0]
+      if (debugFlag) console.log(tokenType + ' token: ' + value);
+      var token = {
+        value,
+        tokenType
+      }
+      tokens.push(token);
+      source = source.substring(value.length);
       ret = true;
     }
     return ret;
